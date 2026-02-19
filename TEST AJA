@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RYOUU PRODUKS LIST</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(-45deg, #001220, #00334e, #004d73, #006699);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .star { position: absolute; background-color: #fff; border-radius: 50%; animation: twinkle linear infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+        
+        header { text-align: center; padding: 30px 20px; }
+
+        /* --- PERBAIKAN EFEK NEON LOGO --- */
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #fff;
+            /* Efek Neon Statis */
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00f3ff, 0 0 40px #00f3ff, 0 0 60px #00f3ff;
+            /* Animasi Berkedip Neon */
+            animation: neonPulse 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes neonPulse {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00f3ff, 0 0 30px #00f3ff;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #00f3ff, 0 0 70px #00f3ff, 0 0 80px #00f3ff;
+            }
+        }
+        
+        .subtitle { 
+            font-size: 1.2rem; 
+            margin-bottom: 20px; 
+            color: #00e6ff; 
+            text-shadow: 0 0 10px #00f3ff;
+        }
+        
+        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .nav-btn {
+            background: rgba(0, 247, 255, 0.1);
+            border: 2px solid #00f3ff;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+        .nav-btn:hover { 
+            background: rgba(0, 247, 255, 0.4); 
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px #00f3ff;
+        }
+
+        .contact-owner {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 243, 255, 0.2);
+            color: #fff;
+            padding: 12px 25px;
+            border: 2px solid #00f3ff;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            box-shadow: 0 0 15px #00f3ff;
+            transition: 0.3s;
+        }
+        .contact-owner:hover {
+            background: #00f3ff;
+            color: #001220;
+            box-shadow: 0 0 30px #00f3ff;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        
+        section {
+            background: rgba(0, 13, 26, 0.8);
+            border: 1px solid #00f3ff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s ease;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+        section.visible { opacity: 1; transform: translateY(0); }
+        
+        h2 { 
+            font-family: 'Orbitron', sans-serif; 
+            color: #00f3ff; 
+            margin-bottom: 25px; 
+            text-align: center;
+            text-shadow: 0 0 10px #00f3ff;
+        }
+        
+        li {
+            background: rgba(0, 40, 80, 0.4);
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #00f3ff;
+            transition: 0.3s;
+        }
+        li:hover { 
+            transform: translateX(10px); 
+            background: rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+
+        .payment-card-cyber {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid #00f3ff;
+            padding: 15px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+        .pay-info img { width: 40px; background: white; padding: 3px; border-radius: 5px; }
+        .copy-btn {
+            background: #00f3ff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 10px #00f3ff;
+        }
+
+        .qris-code {
+            width: 180px;
+            border: 2px solid #00f3ff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00f3ff;
+            color: #001220;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 0 20px #00f3ff;
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+        .notification.show { opacity: 1; }
+
+        footer { text-align: center; padding: 30px; border-top: 1px solid #00f3ff; color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <header>
+        <h1 class="logo">RYOUU PRODUKS LIST</h1>
+        <p class="subtitle">Produk dan Jasa Digital Berkualitas Tinggi</p>
+        
+        <a href="https://t.me/xyouuzh" class="contact-owner" target="_blank">
+            <i class="fab fa-telegram"></i> CONTACT OWNER
+        </a>
+
+        <nav>
+            <button class="nav-btn" onclick="scrollToSection('products')">📦 Products</button>
+            <button class="nav-btn" onclick="scrollToSection('services')">🛠️ Jasa</button>
+
+            <button class="nav-btn" onclick="scrollToSection('payment')">💳 Payment</button>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <section id="products">
+            <h2>📦 ALL PRODUK RYOUU MENJUAL </h2>
+            <ul style="list-style:none">
+                <li>🔍 PANEL 1GB-UNLI
+                </li>
+                <li>💉 JASTIK</li>
+                <li>😈 WEB BUG</li>
+                <li>📊 CAPCUT 30D</li>
+                <li>🌪️ NETFLIX</li>
+                <li>⚡ CHAT GPT</li>
+            </ul>
+        </section>
+
+        <section id="services">
+            <h2>🛠️ ALL PRODUK JASA</h2>
+            <ul style="list-style:none">
+                <li>🌐 JASA CREATE WEBSITE</li>
+                <li>🐞 JASA NEMBAK CEWE</li>
+                <li>🤖 JASBUG</li>
+                <li>🔓 MURBUG</li>
+                <li>🕷️ JASA PEMBUATAN WEBSITE BUG</li>
+            </ul>
+        </section>
+
+        <section id="payment">
+            <h2>💳 PAYMENT RAPZ</h2>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:15px;">
+                <div class="payment-card-cyber">
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <img src="https://codingasikhome.files.wordpress.com/2022/11/dana.png" width="40" style="background:white; padding:3px; border-radius:5px;">
+                        <div><strong>DANA</strong><p>083854090287</p></div>
+                    </div>
+                    <button class="copy-btn" onclick="copyAction('083854090287', 'DANA')">SALIN</button>
+                </div>
+                
+                <div style="text-align:center;">
+                    <img src="https://files.catbox.moe/nm6zd0.jpg" alt="QRIS" class="qris-code">
+                    <p style="margin-top:10px; font-size: 0.8rem; color: #00f3ff; text-shadow:0 0 5px #00f3ff;">Scan QRIS All Payment</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div class="notification" id="notification">Berhasil disalin!</div>
+    
+    <footer><p>© 2023 RYOUU PRODUKS - Created by ryouu</p></footer>
+
+    <script>
+        // Script efek bintang & copy tetap sama
+        function createStars() {
+            const container = document.getElementById('stars');
+            for (let i = 0; i < 80; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random()*2+'px'; star.style.height = star.style.width;
+                star.style.left = Math.random()*100+'%'; star.style.top = Math.random()*100+'%';
+                star.style.animationDuration = (Math.random()*3+2)+'s';
+                container.appendChild(star);
+            }
+        }
+        function checkScroll() {
+            document.querySelectorAll('section').forEach(s => {
+                if(s.getBoundingClientRect().top < window.innerHeight*0.9) s.classList.add('visible');
+            });
+        }
+        function scrollToSection(id) { document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+        function copyAction(text, label) {
+            navigator.clipboard.writeText(text);
+            const n = document.getElementById('notification');
+            n.innerText = label + " Berhasil Disalin!";
+            n.classList.add('show');
+            setTimeout(() => n.classList.remove('show'), 2000);
+        }
+        window.onload = () => { createStars(); checkScroll(); };
+        window.onscroll = checkScroll;
+    </script>
+</body>
+</html>
